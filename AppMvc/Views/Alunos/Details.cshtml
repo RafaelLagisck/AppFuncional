@@ -1,10 +1,10 @@
 ﻿@model AppMvc.Models.Aluno
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Informação do Aluno";
 }
 
-<h2>Details</h2>
+<h2>Informações do Aluno @Model.Nome</h2>
 
 <div>
     <h4>Aluno</h4>
@@ -35,6 +35,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DataMatricula)
         </dt>
 
@@ -52,7 +60,12 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a href="@Url.Action("Edit",controllerName:"Alunos",routeValues:new {id = Model.Id })" class="btn btn-warning">Editar</a>
+        @Html.ActionLink("Voltar", actionName: "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+    </div>
+</div><br/>
+

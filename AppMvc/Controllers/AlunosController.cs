@@ -46,10 +46,11 @@ namespace AppMvc.Controllers
         [HttpPost]
         [Route("novo-aluno")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Nome,Email,CPF,DataMatricula,Ativo")] Aluno aluno)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Nome,Email,CPF,Endereco,Ativo")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
+                aluno.DataMatricula = DateTime.Now;
                 db.Alunos.Add(aluno);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -74,11 +75,12 @@ namespace AppMvc.Controllers
         [HttpPost]
         [Route("editar-aluno/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Nome,Email,CPF,DataMatricula,Ativo")] Aluno aluno)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Nome,Email,CPF,Endereco,Ativo")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(aluno).State = EntityState.Modified;
+                db.Entry(aluno).Property(a => a.DataMatricula).IsModified = false;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
