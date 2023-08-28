@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using AppMvc.Models;
 
-namespace AppMvc
+namespace AppMvc.Controllers
 {
     public class AlunosController : Controller
     {
