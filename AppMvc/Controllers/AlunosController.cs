@@ -11,11 +11,13 @@ using AppMvc.Models;
 
 namespace AppMvc.Controllers
 {
+    [Authorize]
     public class AlunosController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("listar-alunos")]
         public async Task<ActionResult> Index()
         {
